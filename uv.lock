@@ -110,6 +110,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "pydantic" },
     { name = "supabase" },
     { name = "uvicorn" },
 ]
@@ -117,6 +118,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.12" },
+    { name = "pydantic", specifier = ">=2.11.1" },
     { name = "supabase", specifier = ">=2.15.0" },
     { name = "uvicorn", specifier = ">=0.34.0" },
 ]
