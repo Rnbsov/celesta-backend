@@ -8,6 +8,7 @@ dependencies = [
     "fastapi[standard]>=0.115.12",
     "pydantic>=2.11.1",
     "pydantic-settings>=2.8.1",
+    "scalar-fastapi>=1.0.3",
     "supabase>=2.15.0",
     "uvicorn>=0.34.0",
 ]
