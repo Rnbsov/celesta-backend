@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.routes import auth, plants, diary, watering, notifications
 
 app = FastAPI(title="Celesta backend", description="An amazing Celesta backend API")
 
@@ -12,6 +13,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Include all routers
+app.include_router(auth.router)
+app.include_router(plants.router)
+app.include_router(diary.router)
+app.include_router(watering.router)
+app.include_router(notifications.router)
 
 @app.get("/")
 async def root():
