@@ -7,6 +7,7 @@ class PlantCreate(BaseModel):
     sowing_date: date
     substrate: Optional[str] = None
     expected_harvest_date: date
+    plant_type: str
 
 class Plant(BaseModel):
     id: int
@@ -14,3 +15,4 @@ class Plant(BaseModel):
     sowing_date: date
     substrate: Optional[str] = None
     expected_harvest_date: date
+    plant_type: str
