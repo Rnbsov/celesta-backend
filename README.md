@@ -78,3 +78,14 @@ Docker build and run commands
 docker build -t celesta-backend:latest .
 docker run -p 8000:80 --name celesta-backend celesta-backend:latest
 ```
+
+
+> [!IMPORTANT]
+> This project was crafted with ✨ love and passion ✨
+
+<div align="center">
+
+  🍃 【 Happy Growing! 】👾
+
+</div>
+
