@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Celesta Backend API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      - REDIS_HOST=dragonfly
+      - REDIS_PORT=6379
+    depends_on:
+      - dragonfly
+    networks:
+      - celesta-network
+
+  # DragonFly DB (Fully Redis compatible in memory database)
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    ulimits:
+      memlock: -1
+    ports:
+      - "6379:6379"
+    volumes:
+      - dragonfly-data:/data
+    networks:
+      - celesta-network
+
+volumes:
+  dragonfly-data:
+
+networks:
+  celesta-network:
+    driver: bridge
