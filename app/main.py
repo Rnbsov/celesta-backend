@@ -32,3 +32,28 @@ async def scalar_html():
         openapi_url=app.openapi_url,
         title=app.title
     )
+
+# Setup middleware to store user_id in request state for cache key generation
+@app.middleware("http")
+async def add_user_to_request_state(request: Request, call_next):
+    # Get authorization header
+    auth_header = request.headers.get("Authorization", "")
+    if auth_header and auth_header.startswith("Bearer "):
+        try:
+            token = auth_header.replace("Bearer ", "")
+            # We have to duplicate some auth logic here
+            # to avoid circular imports with dependencies
+            from app.db import supabase
+            auth = supabase.auth.get_user(token)
+            print(auth)
+            request.state.user_id = auth.user.id
+        except Exception:
+            pass
+    
+    response = await call_next(request)
+    return response
+
+@app.on_event("startup")
+async def startup_event():
+    # Initialize Redis cache on startup
+    await setup_redis_cache()
