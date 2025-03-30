@@ -21,11 +21,56 @@
     <h3></h3>
 </div>
 
-Run backend with this command
+## About Celeste Backend
 
-```py
-uv run uvicorn app.main:app --reload
-```
+This is the backend service powering the [Celeste microgreens tracking app](https://github.com/Rnbsov/celeste). Built with FastAPI, it provides a robust API for managing microgreens batches, phenological records, growth tracking, and user management.
+
+## Key Features
+
+### 🌱 Data Management API
+- CRUD operations for microgreens batches
+- Growth journal entry management
+- Secure user authentication and authorization
+- Analytics and statistics endpoints
+
+### ⚡ High Performance
+- Asynchronous request handling with FastAPI
+- DragonFlyDB caching for high-throughput operations
+- Containerized deployment for scalability
+
+### 📊 Documentation
+- Auto-generated OpenAPI documentation
+- Interactive API testing with Swagger UI alternative (Scalar API)
+- Comprehensive endpoint descriptions
+
+## Tech Stack
+
+- **Framework**: FastAPI (Python 3.11+)
+- **Database**: PostgreSQL (via SQLAlchemy ORM)
+- **Caching**: [DragonFlyDB](https://www.dragonflydb.io/) (modern Redis alternative)
+- **Authentication**: JWT with OAuth2
+- **Containerization**: Docker
+- **Documentation**: OpenAPI with Scalar API UI
+
+## Local Development Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Rnbsov/celeste-backend.git
+   cd celeste-backend
+   ```
+2. Install uv and run:
+    ```bash
+    uv venv
+    uv add
+    ```
+3. Setup environment variables (create a `.env` file based on `.env.example`)
+4. Run backend with this command
+    ```py
+    uv run uvicorn app.main:app --reload
+    ```
+
+## Docker
 
 Docker build and run commands
 
