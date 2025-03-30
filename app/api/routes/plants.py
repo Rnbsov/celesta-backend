@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from typing import List
 from ...models.plant import PlantCreate, Plant
 from ...db import supabase
 from ...dependencies import get_current_user
+from ...cache import cached
 
 router = APIRouter(prefix="/plants", tags=["plants"])
 
@@ -26,7 +27,8 @@ async def add_plant(plant: PlantCreate, user_id: str = Depends(get_current_user)
         )
 
 @router.get("/", response_model=List[Plant])
-async def get_plants(user_id: str = Depends(get_current_user)):
+@cached(namespace="plants", expire_seconds=60)
+async def get_plants(request: Request, user_id: str = Depends(get_current_user)):
     try:
         # Get plants using Supabase
         response = supabase.table('plants').select(
